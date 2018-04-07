@@ -55,7 +55,8 @@ client.on("message", async message => {
     if (message.member.voiceChannel){
       message.member.voiceChannel.join().then(connection => {
         message.reply("We joined the channel");
-        const dispatcher = connection.playFile('./sounds/TitanicFlue.mp3')
+        const dispatcher = connection.playFile('./sounds/TitanicFlue.mp3');
+        console.log(dispatcher);
         dispatcher.on('end', () => {
           message.reply("done playing");
           message.member.voiceChannel.leave();
