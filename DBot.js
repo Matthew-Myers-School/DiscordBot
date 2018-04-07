@@ -9,7 +9,7 @@ client.on("ready", () => {
   console.log(`Bot has started`);
   //console.log(client);
 
-  client.user.setActivity(`titties`);
+  client.user.setActivity(`Botting It Up`);
 });
 
 
@@ -49,6 +49,21 @@ client.on("message", async message => {
       message.delete().catch(O_o=>{});
       message.channel.send(sayMessage);
 
+  }
+
+  if (command === "sendoff"){
+    if (message.member.voiceChannel){
+      message.member.voiceChannel.join().then(connection => {
+        message.reply("We joined the channel");
+        const dispatcher = connection.playFile('./sounds/TitanicFlue.mp3')
+        dispatcher.on('end', () => {
+          message.reply("done playing");
+          message.member.voiceChannel.leave();
+        })
+      }) .catch(console.log);
+    } else {
+      message.reply('You need to join a voice channel first!')
+    }
   }
 
   if(command === "whatsupwhyareyoufilming"){
