@@ -1,7 +1,8 @@
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const opus = require('node-opus');
+const opus = require('opusscript');
+const ytdl = require('ytdl-core');
 
 const config = require("./config.json");
 
@@ -56,8 +57,10 @@ client.on("message", async message => {
     if (message.member.voiceChannel){
       message.member.voiceChannel.join().then(connection => {
         message.reply("We joined the channel");
-        const dispatcher = connection.playFile('./sounds/TitanicFlute.mp3');
-        console.log(dispatcher);
+        const stream = ytdl('https://www.youtube.com/watch?v=J4hMF1YPkwg', { filter: 'audioonly' });
+        const dispatcher = connection.playStream(stream);
+        //const dispatcher = connection.playFile('./sounds/TitanicFlute.mp3');
+        //console.log(dispatcher);
         dispatcher.on('end', () => {
           message.reply("done playing");
           message.member.voiceChannel.leave();
