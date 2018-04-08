@@ -1,6 +1,7 @@
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
+const opus = require('opusscript');
 
 const config = require("./config.json");
 
