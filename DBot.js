@@ -55,12 +55,12 @@ client.on("message", async message => {
     if (message.member.voiceChannel){
       message.member.voiceChannel.join().then(connection => {
         message.reply("We joined the channel");
-        const dispatcher = connection.playArbitraryInput('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+        const dispatcher = connection.playStream('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
         console.log(dispatcher);
-        /*dispatcher.on('end', () => {
+        dispatcher.on('end', () => {
           message.reply("done playing");
           message.member.voiceChannel.leave();
-        })*/
+        })
       }) .catch(console.log);
     } else {
       message.reply('You need to join a voice channel first!')
