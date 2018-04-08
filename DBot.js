@@ -56,7 +56,7 @@ client.on("message", async message => {
     if (message.member.voiceChannel){
       message.member.voiceChannel.join().then(connection => {
         message.reply("We joined the channel");
-        const dispatcher = connection.playStream('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+        const dispatcher = connection.playFile('./sounds/TitanicFlute.mp3');
         console.log(dispatcher);
         dispatcher.on('end', () => {
           message.reply("done playing");
